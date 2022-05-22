@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace LiteHttpClient\Requests;
 
-use LiteHttpClient\Clients\ClientInterface;
+use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\UriInterface;

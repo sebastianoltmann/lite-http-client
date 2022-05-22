@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace LiteHttpClient\Requests;
 
-use LiteHttpClient\Clients\ClientInterface;
 use LiteHttpClient\Requests\Headers\HeadersCollection;
 use LiteHttpClient\Requests\Utils\StringBodyBuilder;
 use LiteHttpClient\Requests\Utils\StringQueryBuilder;
+use Psr\Http\Client\ClientExceptionInterface;
+use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface as PSRRequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -40,6 +41,9 @@ abstract class AbstractRequest implements RequestInterface
         $this->client = $client;
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function send(array $body, array $headers, array $query): ResponseInterface
     {
         $uri = $this->uri->withQuery(

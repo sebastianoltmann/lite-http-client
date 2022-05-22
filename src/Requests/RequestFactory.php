@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace LiteHttpClient\Requests;
 
-use LiteHttpClient\Clients\ClientInterface;
 use LiteHttpClient\Exceptions\InvalidRequestTypeException;
 use LiteHttpClient\Requests\Types\{DeleteRequest, GetRequest, PatchRequest, PostRequest, PutRequest};
+use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface as PSRRequestFactoryInterface;
 use Psr\Http\Message\UriInterface;
 

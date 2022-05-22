@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace LiteHttpClient\Clients\Curl;
 
 use Http\Message\ResponseFactory;
-use LiteHttpClient\Clients\ClientInterface;
 use LiteHttpClient\Exceptions\ErrorCallbackException;
 use LiteHttpClient\Exceptions\ErrorNetworkException;
 use LiteHttpClient\Exceptions\ErrorRequestException;
@@ -13,11 +12,11 @@ use LiteHttpClient\Exceptions\InvalidClientException;
 use LiteHttpClient\Exceptions\InvalidRequestTypeException;
 use LiteHttpClient\Responses\ResponseBuilder;
 use LiteHttpClient\Responses\ResponseBuilderInterface;
-use Psr\Http\Message\RequestInterface as PSRRequestInterface;
+use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 
-class CurlClient implements ClientInterface
+class CurlClient implements CurlClientInterface
 {
     private $curl;
 
@@ -83,11 +82,11 @@ class CurlClient implements ClientInterface
      * @throws ErrorRequestException
      * @throws InvalidRequestTypeException
      */
-    public function sendRequest(PSRRequestInterface $request): ResponseInterface
+    public function sendRequest(RequestInterface $request): ResponseInterface
     {
         $optionsBuilderFactory = new CurlRequestOptionsBuilderFactory();
         $optionsBuilder = $optionsBuilderFactory->build($request);
-        
+
         $self = $optionsBuilder->prepare($this, $request);
 
         $errorHandler = new CurlErrorHandler();

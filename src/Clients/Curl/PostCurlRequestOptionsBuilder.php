@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace LiteHttpClient\Clients\Curl;
 
-use LiteHttpClient\Clients\ClientInterface;
 use Psr\Http\Message\RequestInterface as PSRRequestInterface;
 
 class PostCurlRequestOptionsBuilder extends AbstractCurlRequestOptionsBuilder
 {
-    protected function prepareMethod(ClientInterface $client, PSRRequestInterface $request): ClientInterface
+    protected function prepareMethod(CurlClientInterface $client, PSRRequestInterface $request): CurlClientInterface
     {
         $body = $request->getBody();
         $bodySize = $body->getSize();

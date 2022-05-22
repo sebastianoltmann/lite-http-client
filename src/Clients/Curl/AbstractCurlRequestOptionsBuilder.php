@@ -4,15 +4,17 @@ declare(strict_types=1);
 
 namespace LiteHttpClient\Clients\Curl;
 
-use LiteHttpClient\Clients\ClientInterface;
 use Psr\Http\Message\RequestInterface as PSRRequestInterface;
 use UnexpectedValueException;
 
 abstract class AbstractCurlRequestOptionsBuilder implements CurlRequestOptionsBuilderInterface
 {
-    abstract protected function prepareMethod(ClientInterface $client, PSRRequestInterface $request): ClientInterface;
+    abstract protected function prepareMethod(
+        CurlClientInterface $client,
+        PSRRequestInterface $request
+    ): CurlClientInterface;
 
-    public function prepare(ClientInterface $client, PSRRequestInterface $request): ClientInterface
+    public function prepare(CurlClientInterface $client, PSRRequestInterface $request): CurlClientInterface
     {
         $client->setOption(CURLOPT_CUSTOMREQUEST, $request->getMethod());
         $client->setOption(CURLOPT_URL, $request->getUri()->__toString());
@@ -27,7 +29,7 @@ abstract class AbstractCurlRequestOptionsBuilder implements CurlRequestOptionsBu
         if ($request->getUri()->getUserInfo()) {
             $client->setOption(CURLOPT_USERPWD, $request->getUri()->getUserInfo());
         }
-        
+
         return $this->prepareMethod($client, $request);
     }
 
