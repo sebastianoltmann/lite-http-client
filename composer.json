@@ -1,0 +1,25 @@
+{
+  "name": "sebastianoltmann/lite-http-client",
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "sebastianoltmann",
+      "email": "oltmann.sebastian@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Tests\\": "tests/",
+      "LiteHttpClient\\": "src/"
+    }
+  },
+  "require": {
+    "php": "^7.3|^8.0",
+    "ext-curl": "*",
+    "phpunit/phpunit": "^8.2",
+    "nyholm/psr7": "^1.5",
+    "psr/http-client": "^1.0"
+  }
+}
